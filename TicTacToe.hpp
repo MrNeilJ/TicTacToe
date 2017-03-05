@@ -7,14 +7,13 @@
 
 #include "Board.hpp"
 
+
 class TicTacToe {
 private:
     bool isXFirst;
     Board currentGame;
 
 public:
-
-
 
     TicTacToe(char firstPlayer);
 

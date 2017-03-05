@@ -49,16 +49,19 @@ bool Board::makeMove(int x, int y, bool playerTurn)
     }
     else if (playerTurn == true)
     {
-        table[x][y] == 'x';
+        table[x][y] = 'x';
 
         return true;
     }
     else if (playerTurn == false)
     {
-        table[x][y] == 'o';
+        table[x][y] = 'o';
         return true;
     }
-
+    else
+    {
+        return false;
+    }
 }
 
 int Board::gameState()
