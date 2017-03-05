@@ -67,7 +67,7 @@ bool Board::makeMove(int x, int y, bool playerTurn)
 Board::Status Board::gameState()
 {
     // Check to see if anyone won vertically
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 3; i++)
     {
         // Check to see if anyone won horizontally
         if (table[i][0] == 'x' && table[i][1] == 'x' && table[i][2] == 'x')
@@ -115,7 +115,7 @@ Board::Status Board::gameState()
     // Check to see if there are any free spaces
     bool freeSpace = false;
 
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 2; j++)
         {
@@ -135,8 +135,10 @@ Board::Status Board::gameState()
 
 void Board::print()
 {
+    // Create a gap below text and board
+    std::cout << "\n";
     // Print first row of the board
-    std::cout << "  1 2" << std::endl;
+    std::cout << "  0 1 2" << std::endl;
     // Loop through the array to print out the rest of the rows
     for (int i = 0; i < 3; i++)
     {
@@ -145,7 +147,11 @@ void Board::print()
         {
             std::cout << " " << table[i][j];
         }
+        std::cout << "\n";
+
     }
+    // Create a gap below the board and next line of text
+    std::cout << "\n";
 }
 
 /*void Board::hasWon()

@@ -15,6 +15,8 @@
 
 TicTacToe::TicTacToe(char firstPlayer)
 {
+
+
     if (std::tolower(firstPlayer) == 'x')
     {
         isXFirst = true;
@@ -25,22 +27,24 @@ TicTacToe::TicTacToe(char firstPlayer)
     }
 }
 
-bool TicTacToe::play()
+void TicTacToe::play()
 {
+
+    Board newBoard1;
 
     do
     {
         // Print the board
-        currentGame.print();
+        newBoard1.print();
 
         // Ask the next player for their move
         if (isXFirst == true)
         {
-            std::cout << "Player O: please enter your move." << std::endl;
+            std::cout << "Player X: please enter your move." << std::endl;
         }
         else
         {
-            std::cout << "Player X: please enter your move." << std::endl;
+            std::cout << "Player O: please enter your move." << std::endl;
         }
 
         // Variables used for the user to store their current answer
@@ -50,17 +54,29 @@ bool TicTacToe::play()
         std::cin >> x;
         std::cin >> y;
 
-        currentGame.makeMove(x, y, isXFirst);
-
-        if (isXFirst == true)
+        bool moveSuccess = newBoard1.makeMove(x, y, isXFirst);
+        if (moveSuccess == true)
         {
-            isXFirst = false;
+            if (isXFirst == true)
+            {
+                isXFirst = false;
+            }
+            else
+            {
+                isXFirst = true;
+            }
         }
-        else
-        {
-            isXFirst = true;
-        }
+    } while(newBoard1.gameState() == Board::UNFINISHED);
 
-    } while(currentGame.gameState() == Board::UNFINISHED);
+    newBoard1.print();
 
+    Board::Status result = newBoard1.gameState();
+    switch (result) {
+        case Board::X_WON : std::cout << "CONGRATS, X, YOU WON!" << std::endl;
+            break;
+        case Board::O_WON : std::cout << "CONGRATS, O, YOU WON!" << std::endl;
+            break;
+        case Board::DRAW : std::cout << "CONGRATS, NEITHER OF YOU WON!" << std::endl;
+            break;
+    }
 };

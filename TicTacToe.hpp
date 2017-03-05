@@ -11,15 +11,13 @@
 class TicTacToe {
 private:
     bool isXFirst;
-    Board currentGame;
+
 
 public:
-
-
     TicTacToe(char firstPlayer);
 
     // Set the board officially
-    bool play();
+    void play();
 };
 
 
