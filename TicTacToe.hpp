@@ -15,11 +15,10 @@ private:
 
 public:
 
+
     TicTacToe(char firstPlayer);
 
     // Set the board officially
-
-
     bool play();
 };
 

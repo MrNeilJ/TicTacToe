@@ -23,7 +23,6 @@ TicTacToe::TicTacToe(char firstPlayer)
     {
         isXFirst = false;
     }
-    Board currentGame;
 }
 
 bool TicTacToe::play()
@@ -61,7 +60,6 @@ bool TicTacToe::play()
         {
             isXFirst = true;
         }
-        currentGame.hasWon();
 
     } while(currentGame.gameState() == Board::UNFINISHED);
 
