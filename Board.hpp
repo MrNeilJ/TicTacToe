@@ -11,7 +11,7 @@
 class Board {
 private:
     char table[3][3];
-    int currentState = UNFINISHED;
+
 public:
 
     enum Status {X_WON = 0, O_WON = 1, DRAW = 2, UNFINISHED = 3};
@@ -20,7 +20,7 @@ public:
 
     bool makeMove(int x, int y, bool playerTurn);
 
-    int gameState();
+    Status gameState();
 
     void print();
 

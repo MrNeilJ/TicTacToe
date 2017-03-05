@@ -64,9 +64,73 @@ bool Board::makeMove(int x, int y, bool playerTurn)
     }
 }
 
-int Board::gameState()
+Board::Status Board::gameState()
 {
-    return currentState;
+    // Check to see if anyone won vertically
+    for (int i = 0; i < 2; i++)
+    {
+        // Check to see if anyone won horizontally
+        if (table[i][0] == 'x' && table[i][1] == 'x' && table[i][2] == 'x')
+        {
+            return X_WON;
+        }
+        else if (table[i][0] == 'o' && table[i][1] == 'o' && table[i][2] == 'o')
+        {
+            return O_WON;
+        }
+    }
+
+    // Check to see if anyone won horizontally
+    for (int i = 0; i < 3; i++)
+    {
+        if (table[0][i] == 'x' && table[1][i] == 'x' && table[2][i] == 'x')
+        {
+            return X_WON;
+        }
+        else if (table[0][i] == 'o' && table[1][i] == 'o' && table[2][i] == 'o')
+        {
+            return O_WON;
+        }
+    }
+
+    // Check to see if anyone won diagonally
+    if (table[0][0] == 'x' && table[1][1] == 'x' && table[2][2] == 'x')
+    {
+        return X_WON;
+    }
+    else if (table[0][2] == 'x' && table[1][1] == 'x' && table[2][0] == 'x')
+    {
+        return X_WON;
+    }
+
+    else if (table[0][0] == 'o' && table[1][1] == 'o' && table[2][2] == 'o')
+    {
+        return O_WON;
+    }
+    else if (table[0][2] == 'o' && table[1][1] == 'o' && table[2][0] == 'o')
+    {
+        return O_WON;
+    }
+
+    // Check to see if there are any free spaces
+    bool freeSpace = false;
+
+    for (int i = 0; i < 2; i++)
+    {
+        for (int j = 0; j < 2; j++)
+        {
+            if (table[i][j] == '.')
+            {
+                freeSpace = true;
+            }
+        }
+    }
+    if (!freeSpace)
+    {
+        return DRAW;
+    }
+
+    return UNFINISHED;
 }
 
 void Board::print()
@@ -84,7 +148,7 @@ void Board::print()
     }
 }
 
-void Board::hasWon()
+/*void Board::hasWon()
 {
 
     // Check to see if anyone won vertically
@@ -135,6 +199,7 @@ void Board::hasWon()
 
     // Check to see if there are any free spaces
     bool freeSpace = false;
+
     for (int i = 0; i < 2; i++)
     {
         for (int j = 0; j < 2; j++)
@@ -145,11 +210,13 @@ void Board::hasWon()
             }
         }
     }
-    if (freeSpace == false)
+    if (!freeSpace)
     {
         currentState = DRAW;
     }
-
-
-
 }
+ */
+
+
+
+
