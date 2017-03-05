@@ -26,5 +26,4 @@ public:
 
 };
 
-
 #endif //BOARD_HPP

@@ -16,7 +16,6 @@
 TicTacToe::TicTacToe(char firstPlayer)
 {
 
-
     if (std::tolower(firstPlayer) == 'x')
     {
         isXFirst = true;
@@ -29,7 +28,6 @@ TicTacToe::TicTacToe(char firstPlayer)
 
 void TicTacToe::play()
 {
-
     Board newBoard1;
 
     do
@@ -71,6 +69,7 @@ void TicTacToe::play()
     newBoard1.print();
 
     Board::Status result = newBoard1.gameState();
+
     switch (result) {
         case Board::X_WON : std::cout << "CONGRATS, X, YOU WON!" << std::endl;
             break;
