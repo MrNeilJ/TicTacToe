@@ -2,8 +2,8 @@
 #include "TicTacToe.hpp"
 
 int main() {
-    TicTacToe newBoard('x');
-    newBoard.play();
+   TicTacToe game1('x');
+    game1.play();
 
     return 0;
 }
