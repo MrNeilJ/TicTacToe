@@ -2,7 +2,7 @@
 #include "TicTacToe.hpp"
 
 int main() {
-   TicTacToe game1('O');
+    TicTacToe game1('x');
     game1.play();
 
     // EXAMPLE INPUTS FOR TESTING THE VALUES

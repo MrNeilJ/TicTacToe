@@ -1,18 +1,24 @@
-/*
- Write a class called TicTacToe that allows two people to play a game.  This class will have a field for a
- Board object and a field to keep track of which player's turn it is.  It should have a constructor that
- takes a char parameter that specifies whether 'x' or 'o' should have the first move.
-
- It should have a method called play that starts the game.  The play method should keep looping, asking the
- correct player for their move and sending it to the board (with makeMove) until someone has won or it's a
- draw (as indicated by gameState), and then declare what the outcome was.
-*/
+/**************************************************************
+ * Author: Neil Johnson
+ *
+ * Date: 3.3.2017
+ *
+ * Description: This program hosts the member functions of the
+ * class TicTacToe.  The goal of this class is to initialize
+ * a board and allow the user to successfully play a game of
+ * TicTacToe until there is a winner or there are no more
+ * available spots on the board.
+**************************************************************/
 
 #include "TicTacToe.hpp"
 #include <iostream>
 #include <cctype>
 
-
+/**************************************************************
+ *                  TicTacToe::TicTacToe
+ * Description: Constructor function that takes in a character
+ * value, letting the game know who have go first.
+**************************************************************/
 TicTacToe::TicTacToe(char firstPlayer)
 {
 
@@ -26,6 +32,15 @@ TicTacToe::TicTacToe(char firstPlayer)
     }
 }
 
+/**************************************************************
+ *                  TicTacToe::play
+ * Description: Member function that causes the game to loop
+ * indefinitely until there are either no more moves or until
+ * there is a winner.  It will create a board object and allow
+ * the users to make move after move. It will then print out
+ * the board after every move.  Once there is a change in
+ * game status it will return the Console one of four responses
+**************************************************************/
 void TicTacToe::play()
 {
     Board newBoard1;
@@ -77,5 +92,6 @@ void TicTacToe::play()
             break;
         case Board::DRAW : std::cout << "CONGRATS, NEITHER OF YOU WON!" << std::endl;
             break;
+        case Board::UNFINISHED : std::cout << "GAME IS STILL PLAYING, KEEP GOING!" << std::endl;
     }
 };
