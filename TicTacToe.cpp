@@ -1,35 +1,49 @@
-/*
- Write a class called TicTacToe that allows two people to play a game.  This class will have a field for a
- Board object and a field to keep track of which player's turn it is.  It should have a constructor that
- takes a char parameter that specifies whether 'x' or 'o' should have the first move.
-
- It should have a method called play that starts the game.  The play method should keep looping, asking the
- correct player for their move and sending it to the board (with makeMove) until someone has won or it's a
- draw (as indicated by gameState), and then declare what the outcome was.
-*/
+/**************************************************************
+ * Author: Neil Johnson
+ *
+ * Date: 3.3.2017
+ *
+ * Description: This program hosts the member functions of the
+ * class TicTacToe.  The goal of this class is to initialize
+ * a board and allow the user to successfully play a game of
+ * TicTacToe until there is a winner or there are no more
+ * available spots on the board.
+**************************************************************/
 
 #include "TicTacToe.hpp"
 #include <iostream>
 #include <cctype>
 
-
+/**************************************************************
+ *                  TicTacToe::TicTacToe
+ * Description: Constructor function that takes in a character
+ * value, letting the game know who have go first.
+**************************************************************/
 TicTacToe::TicTacToe(char firstPlayer)
 {
-
-
-    if (std::tolower(firstPlayer) == 'x')
+    // If the user inputs 'x', set the first move to X
+    if (tolower(firstPlayer) == 'x')
     {
-        isXFirst = true;
+        xTurn = true;
     }
+    // Otherwise set the first move to O
     else
     {
-        isXFirst = false;
+        xTurn = false;
     }
 }
 
+/**************************************************************
+ *                  TicTacToe::play
+ * Description: Member function that causes the game to loop
+ * indefinitely until there are either no more moves or until
+ * there is a winner.  It will create a board object and allow
+ * the users to make move after move. It will then print out
+ * the board after every move.  Once there is a change in
+ * game status it will return the Console one of four responses
+**************************************************************/
 void TicTacToe::play()
 {
-
     Board newBoard1;
 
     do
@@ -38,7 +52,7 @@ void TicTacToe::play()
         newBoard1.print();
 
         // Ask the next player for their move
-        if (isXFirst == true)
+        if (xTurn)
         {
             std::cout << "Player X: please enter your move." << std::endl;
         }
@@ -51,26 +65,34 @@ void TicTacToe::play()
         int x;
         int y;
 
+        // Ask the user for two values, an x and y coordinate
         std::cin >> x;
         std::cin >> y;
 
-        bool moveSuccess = newBoard1.makeMove(x, y, isXFirst);
-        if (moveSuccess == true)
+        // Boolean to store the results of the last move, to ensure it was successful
+        bool moveSuccess = newBoard1.makeMove(x, y, xTurn);
+
+        // If the move was successful, switch to the next player.
+        if (moveSuccess)
         {
-            if (isXFirst == true)
+            if (xTurn)
             {
-                isXFirst = false;
+                xTurn = false;
             }
             else
             {
-                isXFirst = true;
+                xTurn = true;
             }
         }
     } while(newBoard1.gameState() == Board::UNFINISHED);
 
+    // Print the final board results so they can view the final move once the game is over
     newBoard1.print();
 
+    // Find out the final result of the match
     Board::Status result = newBoard1.gameState();
+
+    // Roll through all available return options for game State to inform them of who won!
     switch (result) {
         case Board::X_WON : std::cout << "CONGRATS, X, YOU WON!" << std::endl;
             break;
@@ -78,5 +100,6 @@ void TicTacToe::play()
             break;
         case Board::DRAW : std::cout << "CONGRATS, NEITHER OF YOU WON!" << std::endl;
             break;
+        case Board::UNFINISHED : std::cout << "GAME IS STILL PLAYING, KEEP GOING!" << std::endl;
     }
 };

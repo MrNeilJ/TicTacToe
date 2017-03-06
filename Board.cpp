@@ -1,32 +1,23 @@
-/*
- Write a class called Board that represents a tic-tac-toe board.  It should have a 3x3 array as a data member,
- which will store the locations of the players' moves.  It should have a default constructor that initializes
- the 3x3 array to being empty.
+/**************************************************************
+ * Author: Neil Johnson
+ *
+ * Date: 3.3.2017
+ *
+ * Description: This file hosts the member functions of the
+ * board class.  These functions allow the user to create
+ * a board, set moves on the blank board, as well as check
+ * the status of the game to see if there is a winner or a
+ * draw.
+**************************************************************/
 
- It should have a method called makeMove that takes the x and y coordinates of
- the move (see the example below) and which player's turn it is as parameters.  If that location is unoccupied,
- makeMove should record the move and return true.  If that location is already occupied, makeMove should just
- return false.
-
- There should be a method called gameState that takes no parameters and returns one of the four
- following values: X_WON, O_WON, DRAW, or UNFINISHED - use an enum for this, not strings (the enum definition
- should go in Board.hpp).
-
- There should also be a method called print, which just prints out the current board
- to the screen.
-*/
 #include <iostream>
 #include "Board.hpp"
 
-// Constructor to initialize the main board
-/* THIS IS HOW THE BOARD WILL LOOK
-  0 1 2
-0 x . .
-1 . . .
-2 . . .
- */
-
-// Blank Constructor
+/**************************************************************
+ *                  Board::Board
+ * Description: Constructor for the class to allow the user
+ * to build a blank table 3 x 3 array
+**************************************************************/
 Board::Board()
 {
     // Loop through the array and set the values to '.' (empty spaces)
@@ -39,31 +30,47 @@ Board::Board()
     }
 }
 
+/**************************************************************
+ *                  Board::makeMove
+ * Description: Member function that allows the user to provide
+ * an x / y coordinate of where they would like to set their
+ * move.
+**************************************************************/
 bool Board::makeMove(int x, int y, bool playerTurn)
 {
-    // Check to make sure the space is empty, if, inform the person that the move they made is illegal
+    // Check to make sure the space is empty, if so, inform the person that the move they made is illegal
     if (table[x][y] != '.')
     {
         std::cout << "That square is already taken" << std::endl;
         return false;
     }
+    // If the space is available and it is X's turn, replace the '.' with an 'x'
     else if (playerTurn == true)
     {
         table[x][y] = 'x';
 
         return true;
     }
+    // Else if the space is available and it is O's turn, replace the '.' with an 'o'
     else if (playerTurn == false)
     {
         table[x][y] = 'o';
         return true;
     }
+    // Otherwise, return False, something went wrong but don't switch turns.
     else
     {
         return false;
     }
 }
 
+/**************************************************************
+ *                  Board::gameState
+ * Description: Member function that checks the status of the
+ * game to see if there was a winning move, a game tie, or
+ * if the game is still unfinished.  It does this by checking
+ * all available spaces.
+**************************************************************/
 Board::Status Board::gameState()
 {
     // Check to see if anyone won vertically
@@ -125,20 +132,29 @@ Board::Status Board::gameState()
             }
         }
     }
+    // If there were no more free spaces, and no one won yet, set it to Draw
     if (!freeSpace)
     {
         return DRAW;
     }
-
+    // If we ended up here set it to unfinished and let the game continue
     return UNFINISHED;
 }
 
+/**************************************************************
+ *                  Board::print
+ * Description: Member function that prints out the current
+ * class array, laid out to be visually pleasant and easy
+ * to follow.
+**************************************************************/
 void Board::print()
 {
     // Create a gap below text and board
     std::cout << "\n";
+
     // Print first row of the board
     std::cout << "  0 1 2" << std::endl;
+
     // Loop through the array to print out the rest of the rows
     for (int i = 0; i < 3; i++)
     {
@@ -154,74 +170,6 @@ void Board::print()
     std::cout << "\n";
 }
 
-/*void Board::hasWon()
-{
-
-    // Check to see if anyone won vertically
-    for (int i = 0; i < 2; i++)
-    {
-        // Check to see if anyone won horizontally
-        if (table[i][0] == 'x' && table[i][1] == 'x' && table[i][2] == 'x')
-        {
-            currentState = X_WON;
-        }
-        else if (table[i][0] == 'o' && table[i][1] == 'o' && table[i][2] == 'o')
-        {
-            currentState = O_WON;
-        }
-    }
-
-    // Check to see if anyone won horizontally
-    for (int i = 0; i < 3; i++)
-    {
-        if (table[0][i] == 'x' && table[1][i] == 'x' && table[2][i] == 'x')
-        {
-            currentState = X_WON;
-        }
-        else if (table[0][i] == 'o' && table[1][i] == 'o' && table[2][i] == 'o')
-        {
-            currentState = O_WON;
-        }
-    }
-
-    // Check to see if anyone won diagonally
-    if (table[0][0] == 'x' && table[1][1] == 'x' && table[2][2] == 'x')
-    {
-        currentState = X_WON;
-    }
-    else if (table[0][2] == 'x' && table[1][1] == 'x' && table[2][0] == 'x')
-    {
-        currentState = X_WON;
-    }
-
-    else if (table[0][0] == 'o' && table[1][1] == 'o' && table[2][2] == 'o')
-    {
-        currentState = O_WON;
-    }
-    else if (table[0][2] == 'o' && table[1][1] == 'o' && table[2][0] == 'o')
-    {
-        currentState = O_WON;
-    }
-
-    // Check to see if there are any free spaces
-    bool freeSpace = false;
-
-    for (int i = 0; i < 2; i++)
-    {
-        for (int j = 0; j < 2; j++)
-        {
-            if (table[i][j] == '.')
-            {
-                freeSpace = true;
-            }
-        }
-    }
-    if (!freeSpace)
-    {
-        currentState = DRAW;
-    }
-}
- */
 
 
 
