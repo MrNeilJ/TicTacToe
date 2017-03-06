@@ -19,7 +19,7 @@
 class TicTacToe {
 private:
     // Boolean used to say tell which players turn it is / who is first
-    bool isXFirst;
+    bool xTurn;
 
 
 public:

@@ -24,12 +24,12 @@ TicTacToe::TicTacToe(char firstPlayer)
     // If the user inputs 'x', set the first move to X
     if (tolower(firstPlayer) == 'x')
     {
-        isXFirst = true;
+        xTurn = true;
     }
     // Otherwise set the first move to O
     else
     {
-        isXFirst = false;
+        xTurn = false;
     }
 }
 
@@ -52,7 +52,7 @@ void TicTacToe::play()
         newBoard1.print();
 
         // Ask the next player for their move
-        if (isXFirst)
+        if (xTurn)
         {
             std::cout << "Player X: please enter your move." << std::endl;
         }
@@ -70,18 +70,18 @@ void TicTacToe::play()
         std::cin >> y;
 
         // Boolean to store the results of the last move, to ensure it was successful
-        bool moveSuccess = newBoard1.makeMove(x, y, isXFirst);
+        bool moveSuccess = newBoard1.makeMove(x, y, xTurn);
 
         // If the move was successful, switch to the next player.
         if (moveSuccess)
         {
-            if (isXFirst)
+            if (xTurn)
             {
-                isXFirst = false;
+                xTurn = false;
             }
             else
             {
-                isXFirst = true;
+                xTurn = true;
             }
         }
     } while(newBoard1.gameState() == Board::UNFINISHED);
