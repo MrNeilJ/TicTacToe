@@ -12,8 +12,29 @@
 
 #include "TicTacToe.hpp"
 #include <iostream>
-#include <cctype>
 
+/**************************************************************
+ *                  TicTacToe::TicTacToe
+ * Description: Blank Constructor function that prompts the
+ * user to input which player should go first.
+**************************************************************/
+TicTacToe::TicTacToe()
+{
+    char firstPlayer;
+    std::cout << "Which of you would like to go first? X or O?" << std::endl;
+    std::cin >> firstPlayer;
+
+    // If the user inputs 'x', set the first move to X
+    if (tolower(firstPlayer) == 'x')
+    {
+        xTurn = true;
+    }
+        // Otherwise set the first move to O
+    else
+    {
+        xTurn = false;
+    }
+}
 /**************************************************************
  *                  TicTacToe::TicTacToe
  * Description: Constructor function that takes in a character

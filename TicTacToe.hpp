@@ -21,8 +21,10 @@ private:
     // Boolean used to say tell which players turn it is / who is first
     bool xTurn;
 
-
 public:
+    // Blank Constructor, just in case the user forgets to add a char value
+    TicTacToe();
+
     // Constructor, builds the board and sets the first player for the game
     TicTacToe(char firstPlayer);
 
