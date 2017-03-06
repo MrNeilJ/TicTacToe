@@ -3,11 +3,11 @@
  *
  * Date: 3.3.2017
  *
- * Description: This program hosts a function known as stdDev
- * which allows the user to provide it with an array of pointers
- * aimed at objects, as well as the size of array, and will
- * return to the user the standard deviation between the students
- * stored scores.
+ * Description: This file hosts the header of the
+ * board class.  These functions allow the user to create
+ * a board, set moves on the blank board, as well as check
+ * the status of the game to see if there is a winner or a
+ * draw.
 **************************************************************/
 #ifndef BOARD_HPP
 #define BOARD_HPP

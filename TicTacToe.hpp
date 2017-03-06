@@ -3,11 +3,11 @@
  *
  * Date: 3.3.2017
  *
- * Description: This program hosts a function known as stdDev
- * which allows the user to provide it with an array of pointers
- * aimed at objects, as well as the size of array, and will
- * return to the user the standard deviation between the students
- * stored scores.
+ * Description: This program hosts the header of the
+ * class TicTacToe.  The goal of this class is to initialize
+ * a board and allow the user to successfully play a game of
+ * TicTacToe until there is a winner or there are no more
+ * available spots on the board.
 **************************************************************/
 
 #ifndef TICTACTOE_HPP
@@ -18,10 +18,12 @@
 
 class TicTacToe {
 private:
+    // Boolean used to say tell which players turn it is / who is first
     bool isXFirst;
 
 
 public:
+    // Constructor, builds the board and sets the first player for the game
     TicTacToe(char firstPlayer);
 
     // Set the board officially

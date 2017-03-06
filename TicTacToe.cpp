@@ -21,11 +21,12 @@
 **************************************************************/
 TicTacToe::TicTacToe(char firstPlayer)
 {
-
-    if (std::tolower(firstPlayer) == 'x')
+    // If the user inputs 'x', set the first move to X
+    if (tolower(firstPlayer) == 'x')
     {
         isXFirst = true;
     }
+    // Otherwise set the first move to O
     else
     {
         isXFirst = false;
@@ -51,7 +52,7 @@ void TicTacToe::play()
         newBoard1.print();
 
         // Ask the next player for their move
-        if (isXFirst == true)
+        if (isXFirst)
         {
             std::cout << "Player X: please enter your move." << std::endl;
         }
@@ -64,13 +65,17 @@ void TicTacToe::play()
         int x;
         int y;
 
+        // Ask the user for two values, an x and y coordinate
         std::cin >> x;
         std::cin >> y;
 
+        // Boolean to store the results of the last move, to ensure it was successful
         bool moveSuccess = newBoard1.makeMove(x, y, isXFirst);
-        if (moveSuccess == true)
+
+        // If the move was successful, switch to the next player.
+        if (moveSuccess)
         {
-            if (isXFirst == true)
+            if (isXFirst)
             {
                 isXFirst = false;
             }
@@ -81,10 +86,13 @@ void TicTacToe::play()
         }
     } while(newBoard1.gameState() == Board::UNFINISHED);
 
+    // Print the final board results so they can view the final move once the game is over
     newBoard1.print();
 
+    // Find out the final result of the match
     Board::Status result = newBoard1.gameState();
 
+    // Roll through all available return options for game State to inform them of who won!
     switch (result) {
         case Board::X_WON : std::cout << "CONGRATS, X, YOU WON!" << std::endl;
             break;

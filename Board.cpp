@@ -44,19 +44,20 @@ bool Board::makeMove(int x, int y, bool playerTurn)
         std::cout << "That square is already taken" << std::endl;
         return false;
     }
+    // If the space is available and it is X's turn, replace the '.' with an 'x'
     else if (playerTurn == true)
     {
         table[x][y] = 'x';
 
         return true;
     }
+    // Else if the space is available and it is O's turn, replace the '.' with an 'o'
     else if (playerTurn == false)
     {
         table[x][y] = 'o';
         return true;
     }
-
-    //
+    // Otherwise, return False, something went wrong but don't switch turns.
     else
     {
         return false;
@@ -131,11 +132,12 @@ Board::Status Board::gameState()
             }
         }
     }
+    // If there were no more free spaces, and no one won yet, set it to Draw
     if (!freeSpace)
     {
         return DRAW;
     }
-
+    // If we ended up here set it to unfinished and let the game continue
     return UNFINISHED;
 }
 
@@ -149,8 +151,10 @@ void Board::print()
 {
     // Create a gap below text and board
     std::cout << "\n";
+
     // Print first row of the board
     std::cout << "  0 1 2" << std::endl;
+
     // Loop through the array to print out the rest of the rows
     for (int i = 0; i < 3; i++)
     {
