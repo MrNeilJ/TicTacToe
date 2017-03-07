@@ -123,3 +123,28 @@ void TicTacToe::play()
     }
 }
 
+int main() {
+    // Variable needed for user input of first player
+    char firstPlayer;
+
+    // Ask the user who they would like to go first and store the variable
+    std::cout << "Who would you like to go first? X? or O? " << std::endl;
+    std::cin >> firstPlayer;
+
+    // Initialize new TicTacToe game
+    TicTacToe game1(firstPlayer);
+
+    // Start the game
+    game1.play();
+
+    // EXAMPLE INPUTS FOR TESTING THE VALUES
+    // TIE
+    // 0 0 1 1 2 2 1 0 1 2 0 2 2 0 2 1 0 1
+    // X WIN
+    // 0 0 1 1 2 2 1 0 1 2 0 2 2 0 0 1 2 1
+    // O WIN
+    // 0 0 1 1 2 2 1 0 0 2 1 2
+
+    return 0;
+}
+
