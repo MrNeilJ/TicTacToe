@@ -12,8 +12,6 @@
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
-#include "TicTacToe.hpp"
-
 
 class Board {
 private:
