@@ -12,5 +12,8 @@ int main() {
     // O WIN
     // 0 0 1 1 2 2 1 0 0 2 1 2
 
+    TicTacToe game2;
+    game2.play();
+
     return 0;
 }

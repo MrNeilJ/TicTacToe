@@ -65,8 +65,6 @@ TicTacToe::TicTacToe(char firstPlayer)
 **************************************************************/
 void TicTacToe::play()
 {
-    Board newBoard1;
-
     do
     {
         // Print the board
@@ -123,4 +121,5 @@ void TicTacToe::play()
             break;
         case Board::UNFINISHED : std::cout << "GAME IS STILL PLAYING, KEEP GOING!" << std::endl;
     }
-};
+}
+
