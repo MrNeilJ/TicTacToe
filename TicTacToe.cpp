@@ -123,6 +123,14 @@ void TicTacToe::play()
     }
 }
 
+
+/**************************************************************
+ *                          MAIN
+ * Description: This is the main function to start the program.
+ * It will ask the user who they would like to go first, then
+ * initialize a TicTacToe game with that player as player 1
+ * and then begin the game.
+**************************************************************/
 int main() {
     // Variable needed for user input of first player
     char firstPlayer;
